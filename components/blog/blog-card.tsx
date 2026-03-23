@@ -1,6 +1,5 @@
 "use client"
 
-import { Badge } from "@/components/ui/badge"
 import {
   Tooltip,
   TooltipContent,
@@ -19,22 +18,19 @@ export function BlogCard({ title, category, readTime }: BlogCardProps) {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <div className="group cursor-default rounded-lg border-2 border-dashed border-border bg-card/50 p-6 transition-all hover:border-muted-foreground/50">
-            <div className="mb-4 flex items-start justify-between">
-              <Badge 
-                variant="outline" 
-                className="border-amber-500/50 bg-amber-500/10 text-amber-500"
-              >
+          <div className="group cursor-default rounded-xl border border-dashed border-border/60 bg-card/30 p-6 transition-all duration-300 hover:border-muted-foreground/40 hover:bg-card/50">
+            <div className="mb-4">
+              <span className="text-xs font-medium px-2.5 py-1 rounded-md bg-accent/10 text-accent/80">
                 Coming soon
-              </Badge>
+              </span>
             </div>
             
-            <h3 className="mb-3 text-lg font-semibold text-muted-foreground line-clamp-2 text-balance">
+            <h3 className="mb-3 text-base font-medium text-muted-foreground/80 line-clamp-2">
               {title}
             </h3>
             
-            <p className="text-sm text-muted-foreground/70">
-              {category} · Est. read: {readTime}
+            <p className="text-sm text-muted-foreground/50">
+              {category} - {readTime} read
             </p>
           </div>
         </TooltipTrigger>

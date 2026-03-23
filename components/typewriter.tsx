@@ -6,7 +6,7 @@ const phrases = [
   "AWS Infrastructure",
   "Cloud Networking",
   "Platform Engineering",
-  "DevOps in progress"
+  "DevOps & Automation"
 ]
 
 export function Typewriter() {
@@ -22,7 +22,7 @@ export function Typewriter() {
         if (currentText.length < currentPhrase.length) {
           setCurrentText(currentPhrase.slice(0, currentText.length + 1))
         } else {
-          setTimeout(() => setIsDeleting(true), 2000)
+          setTimeout(() => setIsDeleting(true), 2500)
         }
       } else {
         if (currentText.length > 0) {
@@ -32,13 +32,13 @@ export function Typewriter() {
           setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length)
         }
       }
-    }, isDeleting ? 50 : 100)
+    }, isDeleting ? 40 : 80)
 
     return () => clearTimeout(timeout)
   }, [currentText, isDeleting, currentPhraseIndex])
 
   return (
-    <span className="font-mono text-primary">
+    <span className="font-mono text-accent">
       {currentText}
       <span className="typewriter-cursor" />
     </span>

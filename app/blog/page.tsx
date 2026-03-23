@@ -15,7 +15,7 @@ const draftPosts = [
     readTime: "8 min",
   },
   {
-    title: "Databricks private connectivity on AWS — what actually matters",
+    title: "Databricks private connectivity on AWS - what actually matters",
     category: "Databricks",
     readTime: "6 min",
   },
@@ -28,22 +28,22 @@ const draftPosts = [
 
 export default function BlogPage() {
   return (
-    <main className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       <ScrollProgress />
       <Navbar />
       
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-12 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+      <main className="pt-32 pb-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-16 text-center">
+            <h1 className="text-4xl md:text-5xl font-semibold text-foreground mb-5 tracking-tight">
               Writing
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
               Planning to write about AWS, Databricks, and occasionally finance. Watch this space.
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {draftPosts.map((post) => (
               <BlogCard
                 key={post.title}
@@ -54,9 +54,9 @@ export default function BlogPage() {
             ))}
           </div>
         </div>
-      </section>
+      </main>
 
       <Footer />
-    </main>
+    </div>
   )
 }

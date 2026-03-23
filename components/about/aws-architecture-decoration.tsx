@@ -13,12 +13,12 @@ export function AwsArchitectureDecoration() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Connection lines */}
+      {/* Connection lines - using accent color */}
       <motion.path
         d="M100 80 L200 80 L200 160"
-        stroke="var(--primary)"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.3"
+        strokeOpacity="0.25"
         strokeDasharray="4 4"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
@@ -26,9 +26,9 @@ export function AwsArchitectureDecoration() {
       />
       <motion.path
         d="M300 80 L200 80"
-        stroke="var(--primary)"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.3"
+        strokeOpacity="0.25"
         strokeDasharray="4 4"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
@@ -36,9 +36,9 @@ export function AwsArchitectureDecoration() {
       />
       <motion.path
         d="M200 200 L200 280 L100 280"
-        stroke="var(--primary)"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.3"
+        strokeOpacity="0.25"
         strokeDasharray="4 4"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
@@ -46,9 +46,9 @@ export function AwsArchitectureDecoration() {
       />
       <motion.path
         d="M200 280 L300 280"
-        stroke="var(--primary)"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.3"
+        strokeOpacity="0.25"
         strokeDasharray="4 4"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
@@ -56,9 +56,9 @@ export function AwsArchitectureDecoration() {
       />
       <motion.path
         d="M100 160 L100 200"
-        stroke="var(--primary)"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.3"
+        strokeOpacity="0.25"
         strokeDasharray="4 4"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
@@ -66,9 +66,9 @@ export function AwsArchitectureDecoration() {
       />
       <motion.path
         d="M300 160 L300 200"
-        stroke="var(--primary)"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.3"
+        strokeOpacity="0.25"
         strokeDasharray="4 4"
         initial={{ pathLength: 0 }}
         animate={{ pathLength: 1 }}
@@ -81,10 +81,10 @@ export function AwsArchitectureDecoration() {
         y="120"
         width="280"
         height="200"
-        rx="4"
-        stroke="var(--primary)"
+        rx="8"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.2"
+        strokeOpacity="0.15"
         fill="none"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -93,7 +93,7 @@ export function AwsArchitectureDecoration() {
       <motion.text
         x="75"
         y="138"
-        fill="var(--primary)"
+        fill="var(--accent)"
         fillOpacity="0.4"
         fontSize="10"
         fontFamily="monospace"
@@ -110,12 +110,12 @@ export function AwsArchitectureDecoration() {
         y="50"
         width="60"
         height="40"
-        rx="4"
-        stroke="var(--primary)"
+        rx="6"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.4"
-        fill="var(--primary)"
-        fillOpacity="0.05"
+        strokeOpacity="0.3"
+        fill="var(--accent)"
+        fillOpacity="0.04"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.4 }}
@@ -123,7 +123,7 @@ export function AwsArchitectureDecoration() {
       <motion.text
         x="95"
         y="75"
-        fill="var(--primary)"
+        fill="var(--accent)"
         fillOpacity="0.5"
         fontSize="8"
         fontFamily="monospace"
@@ -139,12 +139,12 @@ export function AwsArchitectureDecoration() {
         y="50"
         width="60"
         height="40"
-        rx="4"
-        stroke="var(--primary)"
+        rx="6"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.4"
-        fill="var(--primary)"
-        fillOpacity="0.05"
+        strokeOpacity="0.3"
+        fill="var(--accent)"
+        fillOpacity="0.04"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
@@ -152,7 +152,7 @@ export function AwsArchitectureDecoration() {
       <motion.text
         x="280"
         y="75"
-        fill="var(--primary)"
+        fill="var(--accent)"
         fillOpacity="0.5"
         fontSize="8"
         fontFamily="monospace"
@@ -169,12 +169,12 @@ export function AwsArchitectureDecoration() {
         y="160"
         width="50"
         height="50"
-        rx="4"
-        stroke="var(--primary)"
+        rx="6"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.4"
-        fill="var(--primary)"
-        fillOpacity="0.08"
+        strokeOpacity="0.3"
+        fill="var(--accent)"
+        fillOpacity="0.06"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.6 }}
@@ -182,7 +182,7 @@ export function AwsArchitectureDecoration() {
       <motion.text
         x="95"
         y="190"
-        fill="var(--primary)"
+        fill="var(--accent)"
         fillOpacity="0.5"
         fontSize="8"
         fontFamily="monospace"
@@ -198,12 +198,12 @@ export function AwsArchitectureDecoration() {
         y="160"
         width="50"
         height="50"
-        rx="4"
-        stroke="var(--primary)"
+        rx="6"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.4"
-        fill="var(--primary)"
-        fillOpacity="0.08"
+        strokeOpacity="0.3"
+        fill="var(--accent)"
+        fillOpacity="0.06"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.7 }}
@@ -211,7 +211,7 @@ export function AwsArchitectureDecoration() {
       <motion.text
         x="285"
         y="190"
-        fill="var(--primary)"
+        fill="var(--accent)"
         fillOpacity="0.5"
         fontSize="8"
         fontFamily="monospace"
@@ -228,12 +228,12 @@ export function AwsArchitectureDecoration() {
         y="160"
         width="60"
         height="40"
-        rx="4"
-        stroke="var(--primary)"
+        rx="6"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.5"
-        fill="var(--primary)"
-        fillOpacity="0.1"
+        strokeOpacity="0.4"
+        fill="var(--accent)"
+        fillOpacity="0.08"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.8 }}
@@ -241,7 +241,7 @@ export function AwsArchitectureDecoration() {
       <motion.text
         x="190"
         y="185"
-        fill="var(--primary)"
+        fill="var(--accent)"
         fillOpacity="0.6"
         fontSize="8"
         fontFamily="monospace"
@@ -258,12 +258,12 @@ export function AwsArchitectureDecoration() {
         y="250"
         width="50"
         height="50"
-        rx="4"
-        stroke="var(--primary)"
+        rx="6"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.4"
-        fill="var(--primary)"
-        fillOpacity="0.05"
+        strokeOpacity="0.3"
+        fill="var(--accent)"
+        fillOpacity="0.04"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.9 }}
@@ -271,7 +271,7 @@ export function AwsArchitectureDecoration() {
       <motion.text
         x="95"
         y="280"
-        fill="var(--primary)"
+        fill="var(--accent)"
         fillOpacity="0.5"
         fontSize="8"
         fontFamily="monospace"
@@ -288,12 +288,12 @@ export function AwsArchitectureDecoration() {
         y="250"
         width="50"
         height="50"
-        rx="4"
-        stroke="var(--primary)"
+        rx="6"
+        stroke="var(--accent)"
         strokeWidth="1"
-        strokeOpacity="0.4"
-        fill="var(--primary)"
-        fillOpacity="0.05"
+        strokeOpacity="0.3"
+        fill="var(--accent)"
+        fillOpacity="0.04"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 1 }}
@@ -301,7 +301,7 @@ export function AwsArchitectureDecoration() {
       <motion.text
         x="290"
         y="280"
-        fill="var(--primary)"
+        fill="var(--accent)"
         fillOpacity="0.5"
         fontSize="8"
         fontFamily="monospace"
@@ -323,9 +323,9 @@ export function AwsArchitectureDecoration() {
           key={i}
           cx={dot.cx}
           cy={dot.cy}
-          r="3"
-          fill="var(--primary)"
-          fillOpacity="0.3"
+          r="2"
+          fill="var(--accent)"
+          fillOpacity="0.25"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3, delay: dot.delay }}

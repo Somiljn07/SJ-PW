@@ -2,98 +2,135 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, Mail } from "lucide-react"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { Typewriter } from "./typewriter"
 
-const stats = [
-  { label: "3x AWS Certified" },
-  { label: "2 yrs @ Celebal" },
+const highlights = [
+  { label: "3x AWS Certified", emphasis: true },
+  { label: "Celebal Technologies" },
   { label: "CGPA 9.02" },
-  { label: "4x Dean's Award" },
 ]
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16 dot-grid">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-          {/* Content */}
+    <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+      {/* Subtle gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card/30" />
+      
+      {/* Refined grid pattern */}
+      <div className="absolute inset-0 dot-grid opacity-60" />
+      
+      {/* Warm ambient glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-accent/[0.03] rounded-full blur-3xl" />
+
+      <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 md:py-32">
+        <div className="flex flex-col items-center text-center">
+          {/* Status badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-8"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/60 bg-card/50 backdrop-blur-sm text-sm text-muted-foreground">
+              <span className="w-2 h-2 rounded-full bg-accent/80 animate-pulse" />
+              Open to opportunities
+            </span>
+          </motion.div>
+
+          {/* Main heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[1.1] tracking-tight max-w-4xl"
+          >
+            I build cloud infrastructure that
+            <span className="block mt-2 text-muted-foreground">holds up when it matters.</span>
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
+          >
+            Cloud & DevOps Engineer at Celebal Technologies, Jaipur. Working with AWS and Databricks. Constantly learning, occasionally over-engineering.
+          </motion.p>
+
+          {/* Typewriter */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-6 text-lg font-mono"
+          >
+            <span className="text-muted-foreground">{">"} </span>
+            <Typewriter />
+          </motion.div>
+
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex-1 text-center lg:text-left"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-10 flex flex-col sm:flex-row gap-4"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight text-balance">
-              I architect cloud systems that hold up when it matters.
-            </h1>
-            
-            <p className="mt-6 text-lg text-muted-foreground max-w-2xl text-pretty">
-              Cloud & DevOps Engineer working with AWS and Databricks at Celebal Technologies, Jaipur. Constantly learning, occasionally over-engineering things.
-            </p>
-
-            {/* Typewriter */}
-            <div className="mt-6 text-xl">
-              <Typewriter />
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link
-                href="#work"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors"
-              >
-                See My Work
-                <ArrowRight size={18} />
-              </Link>
-              <Link
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-border text-foreground font-medium rounded-lg hover:bg-card transition-colors"
-              >
-                Get in Touch
-                <Mail size={18} />
-              </Link>
-            </div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-0"
+            <Link
+              href="/work"
+              className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-foreground text-background font-medium rounded-xl hover:bg-foreground/90 transition-all duration-200"
             >
-              {stats.map((stat, index) => (
-                <div key={stat.label} className="flex items-center">
-                  <span className="text-sm text-muted-foreground">{stat.label}</span>
-                  {index < stats.length - 1 && (
-                    <span className="hidden sm:block mx-4 text-border">|</span>
-                  )}
-                </div>
-              ))}
-            </motion.div>
+              View My Work
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              href="/contact"
+              className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-border text-foreground font-medium rounded-xl hover:border-muted-foreground/50 hover:bg-card/50 transition-all duration-200"
+            >
+              Get in Touch
+              <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </motion.div>
 
-          {/* Avatar */}
+          {/* Highlights */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="flex-shrink-0"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="mt-16 flex flex-wrap items-center justify-center gap-3"
           >
-            <div className="relative w-48 h-48 lg:w-64 lg:h-64">
-              {/* Hexagon shape with initials */}
-              <div className="absolute inset-0 bg-card border border-border/60 rounded-3xl rotate-6 transform" />
-              <div className="absolute inset-0 bg-card border border-border rounded-3xl -rotate-6 transform" />
-              <div className="relative w-full h-full bg-card border border-accent/50 rounded-3xl flex items-center justify-center">
-                <span className="text-6xl lg:text-7xl font-bold text-foreground">SJ</span>
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-2 -right-2 w-4 h-4 bg-accent rounded-full" />
-              <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-accent/50 rounded-full" />
-            </div>
+            {highlights.map((item) => (
+              <span
+                key={item.label}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  item.emphasis 
+                    ? "bg-accent/10 text-accent border border-accent/20" 
+                    : "bg-muted/50 text-muted-foreground border border-transparent"
+                }`}
+              >
+                {item.label}
+              </span>
+            ))}
           </motion.div>
         </div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.6 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="w-6 h-10 rounded-full border-2 border-border/60 flex items-start justify-center p-2"
+        >
+          <div className="w-1 h-2 bg-muted-foreground rounded-full" />
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
