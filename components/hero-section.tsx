@@ -2,135 +2,166 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { ArrowRight, ArrowUpRight } from "lucide-react"
+import { ArrowRight, Github, Linkedin, Mail } from "lucide-react"
 import { Typewriter } from "./typewriter"
 
-const highlights = [
-  { label: "3x AWS Certified", emphasis: true },
-  { label: "Celebal Technologies" },
-  { label: "CGPA 9.02" },
+const socialLinks = [
+  { href: "https://github.com/somiljain", icon: Github, label: "GitHub" },
+  { href: "https://linkedin.com/in/somil-jain-600435228", icon: Linkedin, label: "LinkedIn" },
+  { href: "mailto:your@email.com", icon: Mail, label: "Email" },
+]
+
+const quickLinks = [
+  { href: "/about", label: "ABOUT", description: "My journey" },
+  { href: "/work", label: "WORK", description: "Projects & experience" },
+  { href: "/contact", label: "CONTACT", description: "Get in touch" },
 ]
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+    <section className="relative min-h-screen pt-20 overflow-hidden">
       {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card/30" />
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-card/20" />
       
       {/* Refined grid pattern */}
-      <div className="absolute inset-0 dot-grid opacity-60" />
-      
-      {/* Warm ambient glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-accent/[0.03] rounded-full blur-3xl" />
+      <div className="absolute inset-0 dot-grid opacity-40" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 md:py-32">
-        <div className="flex flex-col items-center text-center">
-          {/* Status badge */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 md:py-24 min-h-[calc(100vh-5rem)] flex flex-col">
+        {/* Main content - two column on desktop */}
+        <div className="flex-1 grid grid-cols-1 lg:grid-cols-[1fr,300px] gap-16 lg:gap-24 items-center">
+          {/* Left column - Main content */}
+          <div>
+            {/* Name and title */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight">
+                Somil Jain
+              </h1>
+              <p className="mt-3 text-xl md:text-2xl text-accent font-medium">
+                Cloud & DevOps Engineer
+              </p>
+            </motion.div>
+
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mt-8 text-lg text-muted-foreground max-w-xl leading-relaxed"
+            >
+              I build cloud infrastructure that holds up when it matters. Currently working with{" "}
+              <span className="text-foreground">AWS</span> and{" "}
+              <span className="text-foreground">Databricks</span> at Celebal Technologies, Jaipur.
+            </motion.p>
+
+            {/* Typewriter */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-6 font-mono text-sm"
+            >
+              <span className="text-muted-foreground/60">currently_building:</span>{" "}
+              <Typewriter />
+            </motion.div>
+
+            {/* Social links */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-10 flex items-center gap-2"
+            >
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-200"
+                  aria-label={link.label}
+                >
+                  <link.icon size={20} />
+                </a>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right column - Quick navigation */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-8"
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/60 bg-card/50 backdrop-blur-sm text-sm text-muted-foreground">
-              <span className="w-2 h-2 rounded-full bg-accent/80 animate-pulse" />
-              Open to opportunities
-            </span>
-          </motion.div>
-
-          {/* Main heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[1.1] tracking-tight max-w-4xl"
-          >
-            I build cloud infrastructure that
-            <span className="block mt-2 text-muted-foreground">holds up when it matters.</span>
-          </motion.h1>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
-          >
-            Cloud & DevOps Engineer at Celebal Technologies, Jaipur. Working with AWS and Databricks. Constantly learning, occasionally over-engineering.
-          </motion.p>
-
-          {/* Typewriter */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6 text-lg font-mono"
+            className="space-y-2"
           >
-            <span className="text-muted-foreground">{">"} </span>
-            <Typewriter />
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-10 flex flex-col sm:flex-row gap-4"
-          >
-            <Link
-              href="/work"
-              className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-foreground text-background font-medium rounded-xl hover:bg-foreground/90 transition-all duration-200"
-            >
-              View My Work
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-            </Link>
-            <Link
-              href="/contact"
-              className="group inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-border text-foreground font-medium rounded-xl hover:border-muted-foreground/50 hover:bg-card/50 transition-all duration-200"
-            >
-              Get in Touch
-              <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-          </motion.div>
-
-          {/* Highlights */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="mt-16 flex flex-wrap items-center justify-center gap-3"
-          >
-            {highlights.map((item) => (
-              <span
-                key={item.label}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  item.emphasis 
-                    ? "bg-accent/10 text-accent border border-accent/20" 
-                    : "bg-muted/50 text-muted-foreground border border-transparent"
-                }`}
+            {quickLinks.map((link, index) => (
+              <motion.div
+                key={link.href}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
               >
-                {item.label}
-              </span>
+                <Link
+                  href={link.href}
+                  className="group flex items-center gap-4 p-4 -mx-4 rounded-xl hover:bg-card/50 transition-all duration-200"
+                >
+                  <div className="w-12 h-px bg-border group-hover:bg-accent group-hover:w-16 transition-all duration-300" />
+                  <div>
+                    <span className="text-sm font-medium tracking-wider text-muted-foreground group-hover:text-foreground transition-colors">
+                      {link.label}
+                    </span>
+                    <p className="text-xs text-muted-foreground/60 mt-0.5">
+                      {link.description}
+                    </p>
+                  </div>
+                  <ArrowRight 
+                    size={14} 
+                    className="ml-auto text-muted-foreground/40 group-hover:text-accent group-hover:translate-x-1 transition-all duration-200" 
+                  />
+                </Link>
+              </motion.div>
             ))}
+            
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="pt-8 mt-8 border-t border-border/50"
+            >
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <p className="text-2xl font-semibold text-foreground">3x</p>
+                  <p className="text-xs text-muted-foreground mt-1">AWS Certified</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-semibold text-foreground">9.02</p>
+                  <p className="text-xs text-muted-foreground mt-1">CGPA</p>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
+        {/* Bottom section */}
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-6 h-10 rounded-full border-2 border-border/60 flex items-start justify-center p-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="flex items-center justify-between py-8 border-t border-border/30"
         >
-          <div className="w-1 h-2 bg-muted-foreground rounded-full" />
+          <p className="text-sm text-muted-foreground/60">
+            Open to opportunities
+          </p>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground/60">
+            <span className="w-2 h-2 rounded-full bg-green-500/60 animate-pulse" />
+            Jaipur, India
+          </div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   )
 }

@@ -231,4 +231,78 @@
   outline-offset: 2px;
 }
 
+/* Link underline animation */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Stagger animation for lists */
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-in > * {
+  animation: stagger-in 0.4s ease forwards;
+  opacity: 0;
+}
+
+.stagger-in > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-in > *:nth-child(2) { animation-delay: 0.15s; }
+.stagger-in > *:nth-child(3) { animation-delay: 0.2s; }
+.stagger-in > *:nth-child(4) { animation-delay: 0.25s; }
+.stagger-in > *:nth-child(5) { animation-delay: 0.3s; }
+.stagger-in > *:nth-child(6) { animation-delay: 0.35s; }
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, var(--foreground) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Magnetic button effect prep */
+.magnetic-btn {
+  transition: transform 0.2s ease;
+}
+
+/* Line decoration */
+.line-decoration::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
 
