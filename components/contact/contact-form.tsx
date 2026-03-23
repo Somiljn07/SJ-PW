@@ -50,9 +50,9 @@ export function ContactForm() {
 
   if (isSuccess) {
     return (
-      <div className="flex flex-col items-center justify-center rounded-lg border border-primary/30 bg-primary/5 p-8 text-center">
-        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/20">
-          <Check className="h-6 w-6 text-primary" />
+      <div className="flex flex-col items-center justify-center rounded-xl border border-accent/30 bg-accent/5 p-10 text-center">
+        <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-accent/20">
+          <Check className="h-6 w-6 text-accent" />
         </div>
         <p className="text-lg font-medium text-foreground">Thanks — I'll get back to you soon.</p>
       </div>
@@ -60,59 +60,59 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <FieldGroup>
         <Field>
-          <FieldLabel htmlFor="name">Name</FieldLabel>
+          <FieldLabel htmlFor="name" className="text-sm text-muted-foreground mb-2">Name</FieldLabel>
           <Input
             id="name"
             name="name"
             type="text"
             required
             placeholder="Your name"
-            className="bg-card border-border focus:border-primary"
+            className="bg-card/50 border-border/60 focus:border-accent focus:bg-card transition-colors rounded-lg h-11"
           />
         </Field>
       </FieldGroup>
 
       <FieldGroup>
         <Field>
-          <FieldLabel htmlFor="email">Email</FieldLabel>
+          <FieldLabel htmlFor="email" className="text-sm text-muted-foreground mb-2">Email</FieldLabel>
           <Input
             id="email"
             name="email"
             type="email"
             required
             placeholder="you@example.com"
-            className="bg-card border-border focus:border-primary"
+            className="bg-card/50 border-border/60 focus:border-accent focus:bg-card transition-colors rounded-lg h-11"
           />
         </Field>
       </FieldGroup>
 
       <FieldGroup>
         <Field>
-          <FieldLabel htmlFor="subject">Subject</FieldLabel>
+          <FieldLabel htmlFor="subject" className="text-sm text-muted-foreground mb-2">Subject</FieldLabel>
           <Input
             id="subject"
             name="subject"
             type="text"
             required
             placeholder="What's this about?"
-            className="bg-card border-border focus:border-primary"
+            className="bg-card/50 border-border/60 focus:border-accent focus:bg-card transition-colors rounded-lg h-11"
           />
         </Field>
       </FieldGroup>
 
       <FieldGroup>
         <Field>
-          <FieldLabel htmlFor="message">Message</FieldLabel>
+          <FieldLabel htmlFor="message" className="text-sm text-muted-foreground mb-2">Message</FieldLabel>
           <Textarea
             id="message"
             name="message"
             required
             rows={5}
             placeholder="Your message..."
-            className="bg-card border-border focus:border-primary resize-none"
+            className="bg-card/50 border-border/60 focus:border-accent focus:bg-card transition-colors resize-none rounded-lg"
           />
         </Field>
       </FieldGroup>
@@ -124,7 +124,7 @@ export function ContactForm() {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+        className="w-full bg-foreground text-background hover:bg-foreground/90 h-11 rounded-lg font-medium transition-colors"
       >
         {isSubmitting ? (
           <>

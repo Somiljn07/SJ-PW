@@ -2,8 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-import { ProjectCard } from "@/components/project-card"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
 
 const featuredProjects = [
   {
@@ -22,8 +21,8 @@ const featuredProjects = [
 
 export function FeaturedProjectsSection() {
   return (
-    <section className="py-20 bg-card">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 md:py-32 bg-background">
+      <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -32,16 +31,16 @@ export function FeaturedProjectsSection() {
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12"
         >
           <div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">
+            <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
               Featured Work
             </h2>
-            <p className="mt-2 text-muted-foreground">
+            <p className="mt-3 text-muted-foreground text-lg">
               A selection of recent projects
             </p>
           </div>
           <Link 
             href="/work"
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium group"
+            className="group inline-flex items-center gap-2 text-foreground hover:text-accent transition-colors font-medium"
           >
             View All Work 
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -52,12 +51,42 @@ export function FeaturedProjectsSection() {
           {featuredProjects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
               viewport={{ once: true }}
             >
-              <ProjectCard {...project} />
+              <article className="group relative h-full p-6 rounded-2xl border border-border bg-card/50 hover:bg-card hover:border-border/80 transition-all duration-300">
+                {/* Type badge */}
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                    {project.type}
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-muted-foreground/50 group-hover:text-accent transition-colors" />
+                </div>
+                
+                {/* Title */}
+                <h3 className="text-xl font-medium text-foreground mb-3 leading-snug group-hover:text-accent transition-colors">
+                  {project.title}
+                </h3>
+                
+                {/* Description */}
+                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                  {project.description}
+                </p>
+                
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-1 text-xs bg-muted/50 text-muted-foreground rounded-md"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
             </motion.div>
           ))}
         </div>

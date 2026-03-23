@@ -15,17 +15,17 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-background dot-grid">
+    <div className="min-h-screen bg-background relative">
       <ScrollProgress />
       <Navbar />
-      <div className="pt-16">
+      <main className="pt-16">
         <IntroSection />
         <ExperienceTimeline />
         <EducationSection />
         <CertificationsGrid />
         <BeyondTechSection />
-      </div>
+      </main>
       <Footer />
-    </main>
+    </div>
   )
 }

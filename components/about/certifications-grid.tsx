@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useState } from "react"
 
 interface Certification {
   name: string
@@ -9,140 +8,115 @@ interface Certification {
   date: string
   note: string
   isPrimary?: boolean
+  color?: string
 }
 
 const certifications: Certification[] = [
   {
-    name: "AWS Certified Solutions Architect – Professional",
+    name: "AWS Certified Solutions Architect - Professional",
     issuer: "AWS",
     date: "Feb 2026",
-    note: "Advanced architectural design and multi-account strategies",
+    note: "Advanced architectural design",
     isPrimary: true,
+    color: "#FF9900",
   },
   {
-    name: "AWS Certified Solutions Architect – Associate",
+    name: "AWS Certified Solutions Architect - Associate",
     issuer: "AWS",
     date: "Feb 2025",
-    note: "Core AWS services and well-architected solutions",
+    note: "Core AWS services",
     isPrimary: true,
+    color: "#FF9900",
   },
   {
     name: "AWS Certified Cloud Practitioner",
     issuer: "AWS",
     date: "Mar 2024",
-    note: "Foundational AWS cloud knowledge",
+    note: "Foundational AWS knowledge",
     isPrimary: true,
+    color: "#FF9900",
   },
   {
     name: "Microsoft Certified: Azure Fundamentals",
     issuer: "Microsoft",
     date: "Jan 2026",
-    note: "Multi-cloud fundamentals with Azure",
+    note: "Multi-cloud fundamentals",
     isPrimary: false,
+    color: "#0078D4",
   },
   {
     name: "Introduction to FinOps",
     issuer: "FinOps Foundation",
     date: "Dec 2025",
-    note: "Cloud financial management practices",
+    note: "Cloud financial management",
     isPrimary: false,
   },
   {
-    name: "NISM-Series-XII: Securities Markets Foundation",
+    name: "NISM-Series-XII: Securities Markets",
     issuer: "NISM",
     date: "Feb 2024",
-    note: "Securities market regulations and operations",
+    note: "Securities market regulations",
     isPrimary: false,
   },
 ]
 
 function CertificationCard({ cert, index }: { cert: Certification; index: number }) {
-  const [isFlipped, setIsFlipped] = useState(false)
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="perspective-1000"
+      transition={{ duration: 0.4, delay: index * 0.08 }}
+      className={`group p-5 rounded-xl border transition-all duration-300 ${
+        cert.isPrimary 
+          ? "border-[#FF9900]/30 bg-[#FF9900]/[0.04] hover:bg-[#FF9900]/[0.08] hover:border-[#FF9900]/40" 
+          : "border-border/60 bg-card/50 hover:bg-card hover:border-border"
+      }`}
     >
-      <div
-        onClick={() => setIsFlipped(!isFlipped)}
-        className={`relative h-48 cursor-pointer transition-transform duration-500 transform-style-3d ${
-          isFlipped ? "rotate-y-180" : ""
-        }`}
-        style={{
-          transformStyle: "preserve-3d",
-          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-        }}
-      >
-        {/* Front */}
-        <div
-          className={`absolute inset-0 bg-card rounded-lg p-6 flex flex-col justify-between backface-hidden border ${
-            cert.isPrimary ? "border-primary" : "border-border"
+      <div className="flex items-start justify-between mb-3">
+        <div 
+          className={`px-2 py-1 rounded-md text-xs font-medium ${
+            cert.isPrimary 
+              ? "bg-[#FF9900]/15 text-[#FF9900]" 
+              : "bg-muted/50 text-muted-foreground"
           }`}
-          style={{ backfaceVisibility: "hidden" }}
         >
-          <div>
-            <div
-              className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${
-                cert.isPrimary ? "bg-primary/20" : "bg-muted"
-              }`}
-            >
-              <span
-                className={`text-sm font-bold ${
-                  cert.isPrimary ? "text-primary" : "text-muted-foreground"
-                }`}
-              >
-                {cert.issuer.substring(0, 3).toUpperCase()}
-              </span>
-            </div>
-            <h3 className="text-sm font-semibold text-foreground line-clamp-2">
-              {cert.name}
-            </h3>
-          </div>
-          <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+          {cert.issuer}
         </div>
-
-        {/* Back */}
-        <div
-          className={`absolute inset-0 bg-card rounded-lg p-6 flex flex-col justify-between border ${
-            cert.isPrimary ? "border-primary" : "border-border"
-          }`}
-          style={{
-            backfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
-          }}
-        >
-          <div>
-            <p className="text-sm text-muted-foreground mb-2">
-              Issued: {cert.date}
-            </p>
-            <p className="text-sm text-foreground">{cert.note}</p>
-          </div>
-          <p className="text-xs text-muted-foreground">Click to flip back</p>
-        </div>
+        <span className="text-xs text-muted-foreground font-mono">{cert.date}</span>
       </div>
+      
+      <h3 className="text-sm font-medium text-foreground mb-2 leading-snug">
+        {cert.name}
+      </h3>
+      
+      <p className="text-xs text-muted-foreground">
+        {cert.note}
+      </p>
     </motion.div>
   )
 }
 
 export function CertificationsGrid() {
   return (
-    <section className="py-24 bg-card/50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
+    <section className="py-24 md:py-32 bg-card/30">
+      <div className="max-w-5xl mx-auto px-6">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-4xl font-bold text-foreground mb-12 text-center"
+          className="mb-12"
         >
-          Certifications
-        </motion.h2>
+          <h2 className="text-3xl md:text-4xl font-semibold text-foreground tracking-tight">
+            Certifications
+          </h2>
+          <p className="mt-3 text-muted-foreground">
+            Professional credentials and achievements
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {certifications.map((cert, index) => (
             <CertificationCard key={cert.name} cert={cert} index={index} />
           ))}
