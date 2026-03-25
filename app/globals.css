@@ -3,71 +3,74 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* SJ Portfolio — Premium Warm Dark Theme
-   Inspired by: raycast.com, arc.net, linear.app
-   Philosophy: Warm, focused, refined — like a premium terminal */
+/* ============================================================
+   SJ Portfolio — Dark Zinc × Emerald
+   Theme: Technical, minimal, confident. Think Vercel + AWS CLI.
+   ============================================================ */
 
 :root {
-  /* Base: Near-black with warm undertone */
-  --background: #0f0d0b;
-  --foreground: #ebe7e1;
-  
-  /* Cards: Subtle elevation with warmth */
-  --card: #171411;
-  --card-foreground: #ebe7e1;
-  
-  /* Surfaces */
-  --popover: #171411;
-  --popover-foreground: #ebe7e1;
-  
-  /* Primary: Warm cream — the anchor */
-  --primary: #ebe7e1;
-  --primary-foreground: #0f0d0b;
-  
-  /* Secondary: Subtle surface */
-  --secondary: #1c1816;
-  --secondary-foreground: #ebe7e1;
-  
-  /* Muted: For subdued elements */
-  --muted: #221e1b;
-  --muted-foreground: #8a847d;
-  
-  /* Accent: Warm sand — purposeful, not decorative */
-  --accent: #c9b9a8;
-  --accent-foreground: #0f0d0b;
-  
-  /* States */
-  --destructive: #c45c4d;
-  --destructive-foreground: #ebe7e1;
-  
-  /* Borders: Barely visible, refined */
-  --border: #262220;
-  --input: #1c1816;
-  --ring: #8a847d;
-  
-  /* Charts */
-  --chart-1: #ebe7e1;
-  --chart-2: #c9b9a8;
-  --chart-3: #8a847d;
-  --chart-4: #5c5751;
-  --chart-5: #3d3936;
-  
-  --radius: 0.75rem;
-  
-  /* Sidebar */
-  --sidebar: #171411;
-  --sidebar-foreground: #ebe7e1;
-  --sidebar-primary: #ebe7e1;
-  --sidebar-primary-foreground: #0f0d0b;
-  --sidebar-accent: #221e1b;
-  --sidebar-accent-foreground: #ebe7e1;
-  --sidebar-border: #262220;
-  --sidebar-ring: #8a847d;
+  /* ── Base surfaces ─────────────────────────────────────── */
+  --background:  #040814;   /* deep rich navy blue canvas   */
+  --foreground:  #f8fafc;   /* slate-50   — crisp white text     */
+
+  --card:        #080e1f;   /* slightly lighter than bg        */
+  --card-foreground: #f8fafc;
+
+  --popover:     #0c142b;
+  --popover-foreground: #f8fafc;
+
+  /* ── Brand: Emerald ────────────────────────────────────── */
+  --primary:          #10b981;   /* emerald-500 */
+  --primary-foreground: #022c22; /* dark emerald for contrast  */
+
+  /* ── Secondary surfaces ────────────────────────────────── */
+  --secondary:          #0c142b; /* blue-tinted dark */
+  --secondary-foreground: #f8fafc;
+
+  --muted:          #17223b;   /* muted blue */
+  --muted-foreground: #94a3b8; /* slate-400 */
+
+  /* ── Accent (same as primary for consistency) ──────────── */
+  --accent:          #10b981;
+  --accent-foreground: #022c22;
+
+  /* ── Legacy gold reference kept for old badge code ─────── */
+  --gold: #f59e0b;
+  --gold-glow: rgba(245, 158, 11, 0.15);
+
+  /* ── State colors ──────────────────────────────────────── */
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+
+  /* ── Borders / inputs ──────────────────────────────────── */
+  --border: #17223b;  
+  --input:  #17223b;
+  --ring:   #10b981;
+
+  /* ── Charts ────────────────────────────────────────────── */
+  --chart-1: #10b981;
+  --chart-2: #3b82f6;
+  --chart-3: #f59e0b;
+  --chart-4: #8b5cf6;
+  --chart-5: #ef4444;
+
+  --radius: 0.625rem;
+
+  /* ── Sidebar ────────────────────────────────────────────── */
+  --sidebar: #080e1f;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #10b981;
+  --sidebar-primary-foreground: #022c22;
+  --sidebar-accent: #0c142b;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: #17223b;
+  --sidebar-ring: #10b981;
 }
 
 @theme inline {
-  --font-sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans:    var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-syne), system-ui, sans-serif;
+  --font-mono:    var(--font-jetbrains-mono), 'Fira Code', monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -106,203 +109,454 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* ============================================================
+   BASE
+   ============================================================ */
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
+  * { @apply border-border outline-ring/50; }
+
   body {
     @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
-  
-  /* Smooth scrolling */
+
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden; /* prevent any horizontal scroll at all zoom levels */
   }
-  
-  /* Better text rendering */
+
+  body {
+    overflow-x: hidden; /* belt + suspenders — protects against component bleed */
+  }
+
+  /* Playfair Display for all headings — elegant serif, celestial feel */
   h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
     text-wrap: balance;
   }
-  
-  p {
-    text-wrap: pretty;
-  }
+  p { text-wrap: pretty; }
 }
 
-/* Subtle noise texture overlay */
-.noise-overlay::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.02;
-  pointer-events: none;
-  z-index: 100;
+/* ============================================================
+   BACKGROUND UTILITIES
+   ============================================================ */
+
+/* Subtle grid lines — pure CSS, no JS */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
-/* Refined dot grid — more subtle */
+/* Dot grid overlay */
 .dot-grid {
-  background-image: radial-gradient(circle, #2a2622 0.75px, transparent 0.75px);
-  background-size: 32px 32px;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-/* Premium glass effect */
+/* Radial emerald glow at centre-top of hero */
+.hero-glow {
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(16,185,129,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 30% at 80% 20%, rgba(16,185,129,0.04) 0%, transparent 60%);
+}
+
+/* ============================================================
+   GLASS NAV
+   ============================================================ */
 .glass {
-  background: rgba(23, 20, 17, 0.8);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background: rgba(4, 8, 20, 0.85);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
 }
 
-/* Subtle glow for interactive elements */
-.glow-hover {
-  transition: box-shadow 0.3s ease;
-}
-.glow-hover:hover {
-  box-shadow: 0 0 20px rgba(201, 185, 168, 0.08);
-}
-
-/* Smooth card elevation */
-.card-elevated {
-  background: linear-gradient(
-    145deg,
-    rgba(34, 30, 27, 0.5) 0%,
-    rgba(23, 20, 17, 0.8) 100%
-  );
-  border: 1px solid rgba(38, 34, 32, 0.8);
+/* ============================================================
+   GLASS CARD — the core card surface for this design system.
+   Every panel, card, and overlay should use this class.
+   ============================================================ */
+.glass-card {
+  background: rgba(8, 14, 31, 0.45);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, background 0.35s ease;
 }
 
-/* Typewriter cursor — refined */
-.typewriter-cursor::after {
-  content: '|';
-  color: var(--accent);
-  animation: blink 1.2s ease-in-out infinite;
-  margin-left: 2px;
+/* Default emerald glow on hover */
+.glass-card:hover {
+  background: rgba(8, 14, 31, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 8px 48px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 0 32px rgba(16, 185, 129, 0.07);
 }
 
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
+/* Brand-color glow variants — applied via JS inline style or data attr */
+.glass-card-aws:hover    { box-shadow: 0 8px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07), 0 0 40px rgba(255,153,0,0.1); border-color: rgba(255,153,0,0.2); }
+.glass-card-db:hover     { box-shadow: 0 8px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07), 0 0 40px rgba(255,54,33,0.1); border-color: rgba(255,54,33,0.2); }
+.glass-card-devops:hover { box-shadow: 0 8px 48px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.07), 0 0 40px rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.22); }
 
-/* Smooth fade in animation */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.5s ease-out forwards;
-}
-
-/* Selection styling */
-::selection {
-  background: rgba(201, 185, 168, 0.25);
-  color: var(--foreground);
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--muted);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--muted-foreground);
-}
-
-/* Focus styles */
-*:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* Link underline animation */
-.link-underline {
-  position: relative;
-}
-.link-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--accent);
-  transition: width 0.3s ease;
-}
-.link-underline:hover::after {
-  width: 100%;
-}
-
-/* Stagger animation for lists */
-@keyframes stagger-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.stagger-in > * {
-  animation: stagger-in 0.4s ease forwards;
-  opacity: 0;
-}
-
-.stagger-in > *:nth-child(1) { animation-delay: 0.1s; }
-.stagger-in > *:nth-child(2) { animation-delay: 0.15s; }
-.stagger-in > *:nth-child(3) { animation-delay: 0.2s; }
-.stagger-in > *:nth-child(4) { animation-delay: 0.25s; }
-.stagger-in > *:nth-child(5) { animation-delay: 0.3s; }
-.stagger-in > *:nth-child(6) { animation-delay: 0.35s; }
-
-/* Hover lift effect */
-.hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.hover-lift:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-}
-
-/* Text gradient */
-.text-gradient {
-  background: linear-gradient(135deg, var(--foreground) 0%, var(--accent) 100%);
+/* ============================================================
+   GRADIENT TEXT — emerald shimmer
+   ============================================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #059669 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Magnetic button effect prep */
-.magnetic-btn {
-  transition: transform 0.2s ease;
+.gradient-text-gold {
+  background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Line decoration */
-.line-decoration::before {
+/* ============================================================
+   HEADING GRADIENT STYLES — multi-color, luminous
+   ============================================================ */
+
+/* Hero name — full aurora multi-color shimmer (white → emerald → cyan → indigo) */
+.gradient-text-hero {
+  background: linear-gradient(
+    135deg,
+    #ffffff   0%,
+    #a7f3d0  20%,
+    #34d399  35%,
+    #67e8f9  55%,
+    #c4b5fd  75%,
+    #ffffff 100%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heading-shimmer 6s linear infinite;
+}
+
+/* Section headings — subtle white → emerald, like starlight */
+.gradient-text-heading {
+  background: linear-gradient(
+    120deg,
+    #f8fafc  0%,
+    #e2e8f0 40%,
+    #6ee7b7 70%,
+    #34d399 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: heading-shimmer 8s linear infinite;
+}
+
+@keyframes heading-shimmer {
+  0%   { background-position: 0%   center; }
+  100% { background-position: 300% center; }
+}
+
+
+/* ============================================================
+   GLOW EFFECTS
+   ============================================================ */
+.glow-emerald {
+  box-shadow: 0 0 30px rgba(16,185,129,0.2), 0 0 60px rgba(16,185,129,0.06);
+}
+
+/* Keep legacy names mapping to emerald */
+.glow-indigo { box-shadow: 0 0 30px rgba(16,185,129,0.15); }
+.glow-cyan   { box-shadow: 0 0 20px rgba(16,185,129,0.12); }
+.glow-gold   { box-shadow: 0 0 20px rgba(245,158,11,0.2);  }
+
+/* ============================================================
+   BORDER GLOW — on hover
+   ============================================================ */
+.border-glow {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.border-glow:hover {
+  box-shadow: 0 0 0 1px rgba(16,185,129,0.3), 0 0 20px rgba(16,185,129,0.06);
+  border-color: rgba(16,185,129,0.35) !important;
+}
+
+/* ============================================================
+   CARD ELEVATION
+   ============================================================ */
+.card-elevated {
+  background: linear-gradient(145deg, rgba(12, 20, 43, 0.8) 0%, rgba(8, 14, 31, 0.95) 100%);
+  border: 1px solid rgba(23, 34, 59, 0.9);
+}
+
+/* ============================================================
+   HOVER LIFT  — legacy, prefer glass-card for new components
+   ============================================================ */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 24px rgba(16,185,129,0.06);
+}
+
+/* ============================================================
+   LUMINOUS BUTTONS
+   ============================================================ */
+/* Primary — emits a warm emerald light on hover */
+.btn-primary-glow {
+  transition: all 0.3s ease;
+}
+.btn-primary-glow:hover {
+  box-shadow: 0 0 0 1px rgba(16,185,129,0.4), 0 0 24px rgba(16,185,129,0.3), 0 4px 20px rgba(16,185,129,0.15);
+}
+
+/* Ghost/outline button — faint inner glow ring */
+.btn-ghost-glow {
+  transition: all 0.3s ease;
+}
+.btn-ghost-glow:hover {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.1) inset, 0 0 16px rgba(16,185,129,0.08);
+  border-color: rgba(16,185,129,0.3);
+}
+
+/* ============================================================
+   LUMINOUS CARD — subtle inner glow on hover
+   ============================================================ */
+.card-glow {
+  transition: all 0.3s ease;
+}
+.card-glow:hover {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 0 16px rgba(16,185,129,0.08);
+}
+
+/* ============================================================
+   LUMINOUS LINK UNDERLINE — glowing gradient trail
+   ============================================================ */
+.link-underline { position: relative; }
+.link-underline::after {
   content: '';
-  display: block;
-  width: 60px;
-  height: 1px;
-  background: var(--accent);
-  margin-bottom: 1.5rem;
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: linear-gradient(90deg, var(--primary), rgba(16,185,129,0.3), transparent);
+  filter: blur(0.5px);
+  box-shadow: 0 0 6px rgba(16,185,129,0.6);
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-underline:hover::after { width: 100%; }
+
+/* ============================================================
+   SECTION LABEL — star coordinate style
+   ============================================================ */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary);
+  opacity: 0.75;
+}
+.section-label::before {
+  content: '✦';
+  font-size: 0.6rem;
+  opacity: 0.6;
 }
 
+/* ============================================================
+   TYPEWRITER CURSOR
+   ============================================================ */
+.typewriter-cursor::after {
+  content: '|';
+  color: var(--primary);
+  animation: blink 1s ease-in-out infinite;
+  margin-left: 2px;
+}
 
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes stagger-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in-up { animation: fade-in-up 0.5s ease-out forwards; }
+.animate-float      { animation: float 4s ease-in-out infinite; }
+
+/* Shimmer skeleton */
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(16,185,129,0.06) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Stagger children */
+.stagger-in > *                { animation: stagger-in 0.4s ease forwards; opacity: 0; }
+.stagger-in > *:nth-child(1)   { animation-delay: 0.05s; }
+.stagger-in > *:nth-child(2)   { animation-delay: 0.10s; }
+.stagger-in > *:nth-child(3)   { animation-delay: 0.15s; }
+.stagger-in > *:nth-child(4)   { animation-delay: 0.20s; }
+.stagger-in > *:nth-child(5)   { animation-delay: 0.25s; }
+.stagger-in > *:nth-child(6)   { animation-delay: 0.30s; }
+
+/* Availability pulse ring */
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+/* Marquee (tech marquee if any) */
+.marquee-track { animation: marquee 20s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ============================================================
+   LINK UNDERLINE ANIMATION
+   ============================================================ */
+.link-underline { position: relative; }
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: var(--primary);
+  transition: width 0.3s ease;
+}
+.link-underline:hover::after { width: 100%; }
+
+/* ============================================================
+   GRADIENT BORDER ON HOVER
+   ============================================================ */
+.gradient-border { position: relative; background-clip: padding-box; }
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(16,185,129,0.4), rgba(16,185,129,0.15), rgba(16,185,129,0.04));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.gradient-border:hover::before { opacity: 1; }
+
+/* ============================================================
+   SCROLLBAR — thin emerald
+   ============================================================ */
+::-webkit-scrollbar        { width: 4px; height: 4px; }
+::-webkit-scrollbar-track  { background: var(--background); }
+::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(16,185,129,0.4); }
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+::selection {
+  background: rgba(16,185,129,0.2);
+  color: var(--foreground);
+}
+
+/* ============================================================
+   FOCUS
+   ============================================================ */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   AVATAR MULTI-COLOR SEQUENCE
+   ============================================================ */
+@keyframes color-cycle-bg {
+  0%, 100% { background-color: rgba(16, 185, 129, 0.25); } /* Emerald */
+  25% { background-color: rgba(255, 153, 0, 0.25); } /* Orange */
+  50% { background-color: rgba(255, 54, 33, 0.25); } /* Red */
+  75% { background-color: rgba(168, 85, 247, 0.25); } /* Purple */
+}
+
+@keyframes color-cycle-border {
+  0%, 100% { 
+    border-color: rgba(16, 185, 129, 0.4); 
+    box-shadow: 0 0 40px rgba(16, 185, 129, 0.12); 
+  }
+  25% { 
+    border-color: rgba(255, 153, 0, 0.4); 
+    box-shadow: 0 0 40px rgba(255, 153, 0, 0.12); 
+  }
+  50% { 
+    border-color: rgba(255, 54, 33, 0.4); 
+    box-shadow: 0 0 40px rgba(255, 54, 33, 0.12); 
+  }
+  75% { 
+    border-color: rgba(168, 85, 247, 0.4); 
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.12); 
+  }
+}
+
+.animate-avatar-glow {
+  animation: color-cycle-bg 12s infinite alternate ease-in-out;
+}
+
+.animate-avatar-border {
+  animation: color-cycle-border 12s infinite alternate ease-in-out;
+}
+
+@keyframes color-cycle-hue {
+  0%, 100% { background-color: rgba(16, 185, 129, 0.4); }
+  25% { background-color: rgba(255, 153, 0, 0.6); }
+  50% { background-color: rgba(255, 54, 33, 0.6); }
+  75% { background-color: rgba(168, 85, 247, 0.6); }
+}
+
+.animate-avatar-hue-mask {
+  animation: color-cycle-hue 12s infinite alternate ease-in-out;
+  mix-blend-mode: hue;
+  -webkit-mask-image: radial-gradient(circle at center, transparent 35%, black 100%);
+  mask-image: radial-gradient(circle at center, transparent 35%, black 100%);
+}

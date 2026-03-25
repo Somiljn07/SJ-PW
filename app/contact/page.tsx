@@ -11,29 +11,32 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen relative">
+      <div className="absolute inset-0 mesh-gradient pointer-events-none" />
       <ScrollProgress />
       <Navbar />
-      
-      <main className="pt-32 pb-24 px-6">
+
+      <main className="relative pt-20 pb-12 px-6">
         <div className="max-w-5xl mx-auto">
-          <div className="mb-16 text-center">
-            <h1 className="text-4xl md:text-5xl font-semibold text-foreground mb-5 tracking-tight">
-              Let's talk
+          {/* Header */}
+          <div className="mb-16">
+
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-4">
+              {"Let's talk"}
             </h1>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+            <p className="text-lg text-gray-300 max-w-xl">
               Open to Cloud & DevOps roles, collaborations, or a good conversation about cloud architecture.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
             <div>
-              <h2 className="text-lg font-medium text-foreground mb-6">Send a message</h2>
+              <h2 className="text-base font-semibold text-foreground mb-6">Send a message</h2>
               <ContactForm />
             </div>
 
             <div>
-              <h2 className="text-lg font-medium text-foreground mb-6">Or find me here</h2>
+              <h2 className="text-base font-semibold text-foreground mb-6">Or find me here</h2>
               <ContactLinks />
             </div>
           </div>

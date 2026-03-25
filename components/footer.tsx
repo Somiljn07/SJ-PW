@@ -4,36 +4,37 @@ import Link from "next/link"
 import { Github, Linkedin, Mail } from "lucide-react"
 
 const socialLinks = [
-  { href: "https://github.com/somiljain", icon: Github, label: "GitHub" },
+  { href: "https://github.com/Somiljn07",                 icon: Github,   label: "GitHub"   },
   { href: "https://linkedin.com/in/somil-jain-600435228", icon: Linkedin, label: "LinkedIn" },
-  { href: "mailto:your@email.com", icon: Mail, label: "Email" },
+  { href: "mailto:somiljn02@gmail.com",                   icon: Mail,     label: "Email"    },
 ]
 
 const navLinks = [
-  { href: "/about", label: "About" },
-  { href: "/work", label: "Work" },
-  { href: "/blog", label: "Blog" },
+  { href: "/",        label: "Home"    },
+  { href: "/about",   label: "About"   },
+  { href: "/work",    label: "Work"    },
+  { href: "/blog",    label: "Blog"    },
   { href: "/contact", label: "Contact" },
 ]
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/50 bg-card/30">
-      <div className="max-w-5xl mx-auto px-6 py-12">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-          {/* Left: Brand */}
-          <div className="space-y-4">
-            <Link href="/" className="group inline-flex items-center gap-1">
-              <span className="text-lg font-semibold text-foreground">somil</span>
-              <span className="text-lg font-semibold text-muted-foreground">.dev</span>
+    <footer className="border-t border-border/70 bg-[#040814]/60 backdrop-blur-sm">
+      <div className="max-w-5xl mx-auto px-6 py-7">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+
+          {/* Left: Brand + copyright */}
+          <div className="flex items-center gap-3">
+            <Link href="/" className="group inline-flex items-center gap-0.5">
+              <span className="text-base font-bold text-foreground">S</span>
+              <span className="text-base font-bold gradient-text">J</span>
             </Link>
-            <p className="text-sm text-muted-foreground max-w-xs">
-              Cloud & DevOps Engineer based in Jaipur, India. Building reliable infrastructure.
-            </p>
+            <span className="text-xs text-muted-foreground/50">·</span>
+            <span className="text-sm text-muted-foreground/60">© 2026 Somil Jain</span>
           </div>
 
-          {/* Middle: Navigation */}
-          <nav className="flex flex-wrap gap-x-6 gap-y-2">
+          {/* Centre: Nav links */}
+          <nav className="flex flex-wrap items-center gap-x-5 gap-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -45,27 +46,22 @@ export function Footer() {
             ))}
           </nav>
 
-          {/* Right: Social */}
-          <div className="flex items-center gap-3">
+          {/* Right: Social icons */}
+          <div className="flex items-center gap-1">
             {socialLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
                 aria-label={link.label}
+                className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200"
               >
-                <link.icon size={18} />
+                <link.icon size={17} />
               </a>
             ))}
           </div>
-        </div>
 
-        {/* Bottom */}
-        <div className="mt-10 pt-6 border-t border-border/50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-sm text-muted-foreground">
-          <p>Built with Next.js and curiosity</p>
-          <p>2025</p>
         </div>
       </div>
     </footer>

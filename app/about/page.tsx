@@ -15,7 +15,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen relative overflow-x-hidden">
       <ScrollProgress />
       <Navbar />
       <main className="pt-16">
